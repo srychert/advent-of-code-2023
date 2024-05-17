@@ -2,7 +2,6 @@ package day01
 
 import (
 	"bufio"
-	"os"
 	"strconv"
 	"unicode"
 
@@ -10,8 +9,7 @@ import (
 )
 
 func Day01() int {
-	file, err := os.OpenFile("./day-01/input.txt", os.O_RDONLY, os.ModePerm)
-	utils.Check(err)
+	file := utils.GetInputFile("day-01")
 	defer file.Close()
 
 	sum := 0
@@ -43,7 +41,7 @@ func Day01() int {
 		sum += i
 	}
 
-	err = sc.Err()
+	err := sc.Err()
 	utils.Check(err)
 
 	return sum
