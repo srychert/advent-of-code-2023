@@ -8,10 +8,6 @@ import (
 	utils "github.com/srychert/advent-of-code-2023/internal/utils"
 )
 
-const MAX_RED = 12
-const MAX_GREEN = 13
-const MAX_BLUE = 14
-
 type Color string
 
 const (
@@ -20,22 +16,16 @@ const (
 	BLUE  Color = "blue"
 )
 
-var m = map[Color]int{
-	RED:   MAX_RED,
-	GREEN: MAX_GREEN,
-	BLUE:  MAX_BLUE,
-}
-
-func handleCubes(cubes string, color Color) bool {
+func handleCubes(cubes string, color Color, minCubes *int) {
 	before, found := strings.CutSuffix(cubes, " "+string(color))
 
 	if found {
 		n, _ := strconv.Atoi(before)
 
-		return !(n > m[color])
+		if n > *minCubes {
+			*minCubes = n
+		}
 	}
-
-	return true
 }
 
 func Day02() int {
@@ -48,29 +38,24 @@ func Day02() int {
 	for sc.Scan() {
 		line := sc.Text()
 
-		g := strings.Split(strings.Replace(line, "Game ", "", 1), ": ")
-		id, _ := strconv.Atoi(g[0])
+		g := strings.Split(line, ": ")
+
+		minRed := 0
+		minGreen := 0
+		minBlue := 0
 
 		rounds := strings.Split(g[1], "; ")
-		gameIsValid := true
 
-	game:
 		for _, round := range rounds {
 			r := strings.Split(round, ", ")
 			for _, cubes := range r {
-				gameIsValid = handleCubes(cubes, RED) &&
-					handleCubes(cubes, GREEN) &&
-					handleCubes(cubes, BLUE)
-
-				if !gameIsValid {
-					break game
-				}
+				handleCubes(cubes, RED, &minRed)
+				handleCubes(cubes, GREEN, &minGreen)
+				handleCubes(cubes, BLUE, &minBlue)
 			}
 		}
 
-		if gameIsValid {
-			sum += id
-		}
+		sum += minRed * minGreen * minBlue
 	}
 
 	return sum
