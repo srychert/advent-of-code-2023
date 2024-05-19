@@ -6,6 +6,7 @@ import (
 	"os"
 
 	day01 "github.com/srychert/advent-of-code-2023/day-01"
+	day02 "github.com/srychert/advent-of-code-2023/day-02"
 )
 
 func main() {
@@ -17,7 +18,9 @@ func main() {
 	switch day {
 	case 1:
 		fmt.Println(day01.Day01())
-	case 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25:
+	case 2:
+		fmt.Println(day02.Day02())
+	case 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25:
 		panic(fmt.Sprintf("There is no solution for day %d yet\n", day))
 	default:
 		fmt.Printf("Error: No solution for day %d\n", day)
