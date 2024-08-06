@@ -2,9 +2,11 @@ package day02
 
 import (
 	"bufio"
+	"log"
 	"strconv"
 	"strings"
 
+	config "github.com/srychert/advent-of-code-2023/internal/config"
 	utils "github.com/srychert/advent-of-code-2023/internal/utils"
 )
 
@@ -28,8 +30,14 @@ func handleCubes(cubes string, color Color, minCubes *int) {
 	}
 }
 
-func Day02() int {
-	file := utils.GetInputFile("day-02")
+func Day02(flags config.Flags) int {
+	if utils.IsPartOne(flags.Part) {
+		log.Fatal("Part one not available")
+	}
+	if flags.Ex {
+		log.Fatal("Example file not available")
+	}
+	file := utils.GetInputFile("day-02", "", false)
 	defer file.Close()
 
 	sum := 0

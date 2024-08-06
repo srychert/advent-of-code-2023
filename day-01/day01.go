@@ -2,10 +2,12 @@ package day01
 
 import (
 	"bufio"
+	"log"
 	"strconv"
 	"strings"
 	"unicode"
 
+	config "github.com/srychert/advent-of-code-2023/internal/config"
 	utils "github.com/srychert/advent-of-code-2023/internal/utils"
 )
 
@@ -18,8 +20,14 @@ func assignRune(runes *[]rune, char rune) {
 	}
 }
 
-func Day01() int {
-	file := utils.GetInputFile("day-01")
+func Day01(flags config.Flags) int {
+	if utils.IsPartOne(flags.Part) {
+		log.Fatal("Part one not available")
+	}
+	if flags.Ex {
+		log.Fatal("Example file not available")
+	}
+	file := utils.GetInputFile("day-01", "", false)
 	defer file.Close()
 
 	sum := 0
