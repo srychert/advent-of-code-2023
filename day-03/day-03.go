@@ -7,7 +7,7 @@ import (
 
 func Day03(flags config.Flags) int {
 	if utils.IsPartOne(flags.Part) {
-		return 0
+		return PartOne(flags)
 	}
 	if utils.IsPartTwo(flags.Part) {
 		return 0
